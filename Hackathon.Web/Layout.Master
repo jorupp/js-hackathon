@@ -1,0 +1,32 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Layout.master.cs" Inherits="Hackathon.Web.Layout" %>
+<%@ Register Src="~/Header.ascx" TagPrefix="hack" TagName="Header" %>
+<%@ Register Src="~/Footer.ascx" TagPrefix="hack" TagName="Footer" %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hackathon</title>
+        <link rel="stylesheet" href="/Content/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/Content/css/site.css" />
+        <script type="text/javascript" src="/Scripts/modernizr.js"></script>
+        <script type="text/javascript" src="/Scripts/respond.min.js"></script>
+        <asp:ContentPlaceHolder ID="head" runat="server">
+        </asp:ContentPlaceHolder>
+    </head>
+    <body>
+        <form id="form1" runat="server">
+            <div class="container">
+                <hack:Header runat="server" />
+                <asp:ContentPlaceHolder ID="body" runat="server">
+                </asp:ContentPlaceHolder>
+                <hack:Footer ID="Header1" runat="server" />
+            </div>
+
+            <script type="text/javascript" src="/Scripts/jquery-1.11.1.min.js"></script>
+            <script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
+            <asp:ContentPlaceHolder ID="scripts" runat="server">
+            </asp:ContentPlaceHolder>
+        </form>
+    </body>
+</html>

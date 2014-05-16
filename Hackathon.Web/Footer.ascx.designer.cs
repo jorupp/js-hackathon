@@ -11,6 +11,6 @@
 namespace Hackathon.Web {
     
     
-    public partial class _Default {
+    public partial class Footer {
     }
 }
