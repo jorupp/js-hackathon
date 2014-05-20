@@ -137,6 +137,13 @@
     <Content Include="Content\css\site.css" />
     <Content Include="Content\logo-jquery.png" />
     <Content Include="AngularJS.aspx" />
+    <Content Include="jqGrid.aspx" />
+    <Content Include="Scripts\jquery.event.drag-2.2.js" />
+    <Content Include="SlickGrid.aspx" />
+    <Content Include="jqGridKnockoutJS.aspx" />
+    <Content Include="SlickGridKnockoutJS.aspx" />
+    <Content Include="jqGridAngularJS.aspx" />
+    <Content Include="SlickGridAngularJS.aspx" />
     <Content Include="KnockoutJS.aspx" />
     <Content Include="Footer.ascx" />
     <Content Include="Header.ascx" />

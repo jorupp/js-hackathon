@@ -22,10 +22,10 @@
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownList">
                 <li><a href="/SlickGridAngularJS.aspx">SlickGrid + AngularJS</a></li>
                 <li><a href="/SlickGridKnockoutJS.aspx">SlickGrid + KnockoutJS</a></li>
-                <li><a href="/SlickGridKnockoutJS.aspx">SlickGrid</a></li>
+                <li><a href="/SlickGrid.aspx">SlickGrid</a></li>
                 <li><a href="/jqGridAngularJS.aspx">jqGrid + AngularJS</a></li>
                 <li><a href="/jqGridKnockoutJS.aspx">jqGrid + KnockoutJS</a></li>
-                <li><a href="/jqGridKnockoutJS.aspx">jqGrid</a></li>
+                <li><a href="/jqGrid.aspx">jqGrid</a></li>
             </ul>
         </li>
     </ul>
