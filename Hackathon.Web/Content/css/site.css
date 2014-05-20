@@ -25,3 +25,8 @@ html, body {
     margin: 20px auto;
     padding: 0 30px;
 }
+
+/** angular itself has this rule, but it loaded too late to prevent the FOUC **/
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}

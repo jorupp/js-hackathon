@@ -101,13 +101,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Default.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Footer.ascx.cs">
       <DependentUpon>Footer.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -143,6 +136,8 @@
     <None Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\css\site.css" />
     <Content Include="Content\logo-jquery.png" />
+    <Content Include="AngularJS.aspx" />
+    <Content Include="KnockoutJS.aspx" />
     <Content Include="Footer.ascx" />
     <Content Include="Header.ascx" />
     <Content Include="Layout.Master" />
