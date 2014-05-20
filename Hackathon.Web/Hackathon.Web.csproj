@@ -129,10 +129,13 @@
     <None Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <None Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <None Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\css\site.css" />
     <Content Include="Content\logo-jquery.png" />
     <Content Include="Footer.ascx" />
     <Content Include="Header.ascx" />
     <Content Include="Layout.Master" />
+    <Content Include="Scripts\modernizr.js" />
+    <Content Include="Scripts\respond.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
