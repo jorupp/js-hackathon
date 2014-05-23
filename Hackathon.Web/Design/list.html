@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon</title>
+    <link rel="stylesheet" href="/Content/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/Content/css/site.css" />
+    <script type="text/javascript" src="/Scripts/modernizr.js"></script>
+    <script type="text/javascript" src="/Scripts/respond.min.js"></script>
+</head>
+<body>
+    <div class="wh-list">
+        <ul>
+            <li><a href="#">Name One</a></li>
+            <li><a href="#">Name Two</a></li>
+            <li><a href="#">Name Three</a></li>
+            <li><a href="#">Name Four</a></li>
+            <li><a href="#">Name Five</a></li>
+            <li><a href="#"><strong>25 More</strong></a></li>
+        </ul>
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+    <form class="form-horizontal wh-list-filter">
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend>List Filters</legend>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="categoryfilter">Category</label>
+                <div class="col-md-5">
+                    <input id="categoryfilter" name="categoryfilter" type="text" placeholder="" class="form-control input-md">
+
+                </div>
+            </div>
+
+            <!-- Multiple Checkboxes -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="attributefilter">Atrributes</label>
+                <div class="col-md-4">
+                    <div class="checkbox">
+                        <label for="attributefilter-0">
+                            <input type="checkbox" name="attributefilter" id="attributefilter-0" value="1">
+                            Car
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="attributefilter-1">
+                            <input type="checkbox" name="attributefilter" id="attributefilter-1" value="2">
+                            Truck
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+
+
+    <br />
+    <br />
+    <br />
+
+    <div class="wh-item-detail">
+        <div class="name">Name One</div>
+        <div class="category">Category</div>
+        <div class="description">Description</div>
+    </div>
+
+</body>
+</html>
