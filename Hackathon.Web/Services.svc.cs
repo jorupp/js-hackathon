@@ -11,12 +11,27 @@ namespace Hackathon.Web
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     public class Services
     {
-        // Add [WebGet] attribute to use HTTP GET
         [OperationContract]
         [WebGet(BodyStyle = WebMessageBodyStyle.Bare, ResponseFormat = WebMessageFormat.Json)]
         public DataObject[] GetData()
         {
             return RawData().Take(20).ToArray();
+        }
+
+        [OperationContract]
+        [WebGet(BodyStyle = WebMessageBodyStyle.Bare, ResponseFormat = WebMessageFormat.Json)]
+        public DataObject[] GetDataForSlickGrid(string aRequestParameter)
+        {
+            // TODO: change the parameters, and use them to get and return the correct data
+            return RawData().Where(i => 1 == 2).ToArray();
+        }
+
+        [OperationContract]
+        [WebGet(BodyStyle = WebMessageBodyStyle.Bare, ResponseFormat = WebMessageFormat.Json)]
+        public DataObject[] GetDataForJQGrid(string aRequestParameter)
+        {
+            // TODO: change the parameters, and use them to get and return the correct data
+            return RawData().Where(i => 1 == 2).ToArray();
         }
 
         public class DataObject
