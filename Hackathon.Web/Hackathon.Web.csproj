@@ -425,6 +425,7 @@
     <Content Include="Content\css\site.css" />
     <Content Include="Content\logo-jquery.png" />
     <Content Include="AngularJS.aspx" />
+    <Content Include="Design\list.html" />
     <Content Include="jqxGridKnockoutJS.aspx" />
     <Content Include="jqxGridAngularJS.aspx" />
     <Content Include="jqxGrid.aspx" />
