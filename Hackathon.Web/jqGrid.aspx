@@ -14,16 +14,6 @@
     <script type="text/javascript" src="/Scripts/jquery.jqGrid.min.js"></script>
     <script type="text/javascript">
         $(function() {
-            var grid;
-            var columns = [
-                {id: "title", name: "Title", field: "title"},
-                {id: "duration", name: "Duration", field: "duration"},
-                {id: "%", name: "% Complete", field: "percentComplete"},
-                {id: "start", name: "Start", field: "start"},
-                {id: "finish", name: "Finish", field: "finish"},
-                {id: "effort-driven", name: "Effort Driven", field: "effortDriven"}
-            ];
-
             var data = [];
             for (var i = 0; i < 500; i++) {
                 data[i] = {
