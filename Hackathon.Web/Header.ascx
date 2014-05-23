@@ -26,6 +26,9 @@
                 <li><a href="/jqGridAngularJS.aspx">jqGrid + AngularJS</a></li>
                 <li><a href="/jqGridKnockoutJS.aspx">jqGrid + KnockoutJS</a></li>
                 <li><a href="/jqGrid.aspx">jqGrid</a></li>
+                <li><a href="/jqxGridAngularJS.aspx">jqxGrid + AngularJS</a></li>
+                <li><a href="/jqxGridKnockoutJS.aspx">jqxGrid + KnockoutJS</a></li>
+                <li><a href="/jqxGrid.aspx">jqxGrid</a></li>
             </ul>
         </li>
     </ul>
