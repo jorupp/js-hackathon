@@ -31,5 +31,15 @@
                 <li><a href="/jqxGrid.aspx">jqxGrid</a></li>
             </ul>
         </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">References<b class="caret"></b></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownList">
+                <li><a target="_blank" href="https://angularjs.org/">AngularJS</a></li>
+                <li><a target="_blank" href="http://knockoutjs.com/">KnockoutJS</a></li>
+                <li><a target="_blank" href="https://github.com/mleibman/SlickGrid/wiki/Examples">SlickGrid examples</a></li>
+                <li><a target="_blank" href="http://trirand.com/blog/jqgrid/jqgrid.html">jqGrid examples</a></li>
+                <li><a target="_blank" href="http://www.jqwidgets.com/jquery-widgets-demo/demos/jqxgrid/">jqxGrid examples</a></li>
+            </ul>
+        </li>
     </ul>
 </header>
