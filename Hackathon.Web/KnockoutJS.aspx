@@ -79,7 +79,6 @@
     (function() {
         // put your knockout-using code here
         var model = {
-             message: ko.observable("Hello from Knockout"),
              items: ko.observableArray([]),
              selectedItem: ko.observable(null),
              categoryFilter: ko.observable(""),
