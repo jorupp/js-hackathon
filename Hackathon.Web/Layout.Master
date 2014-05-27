@@ -15,7 +15,6 @@
         </asp:ContentPlaceHolder>
     </head>
     <body>
-        <form id="form1" runat="server">
             <div class="container">
                 <hack:Header runat="server" />
                 <asp:ContentPlaceHolder ID="body" runat="server">
@@ -27,6 +26,5 @@
             <script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
             <asp:ContentPlaceHolder ID="scripts" runat="server">
             </asp:ContentPlaceHolder>
-        </form>
     </body>
 </html>
