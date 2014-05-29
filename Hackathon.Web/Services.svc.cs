@@ -28,10 +28,66 @@ namespace Hackathon.Web
 
         [OperationContract]
         [WebGet(BodyStyle = WebMessageBodyStyle.Bare, ResponseFormat = WebMessageFormat.Json)]
-        public DataObject[] GetDataForJQGrid(string aRequestParameter)
+        public JQGridWrapper<DataObject> GetDataForJQGrid(string sidx, string sord, int rows, int page, string Name, string NeedsRepair)
         {
+            var data = RawData().AsQueryable();
+
+            switch (sidx + " " + sord)
+            {
+                case "Name asc":
+                    data = data.OrderBy(i => i.Name);
+                    break;
+                case "Name desc":
+                    data = data.OrderByDescending(i => i.Name);
+                    break;
+                case "RepairProbabilityInNext90Days asc":
+                    data = data.OrderBy(i => i.RepairProbabilityInNext90Days);
+                    break;
+                case "RepairProbabilityInNext90Days desc":
+                    data = data.OrderByDescending(i => i.RepairProbabilityInNext90Days);
+                    break;
+                case "CurrentValue asc":
+                    data = data.OrderBy(i => i.CurrentValue);
+                    break;
+                case "CurrentValue desc":
+                    data = data.OrderByDescending(i => i.CurrentValue);
+                    break;
+                case "NeedsRepair asc":
+                    data = data.OrderBy(i => i.NeedsRepair);
+                    break;
+                case "NeedsRepair desc":
+                    data = data.OrderByDescending(i => i.NeedsRepair);
+                    break;
+            }
+
+            if (!string.IsNullOrEmpty(Name))
+            {
+                data = data.Where(i => i.Name.Contains(Name));
+            }
+            if (NeedsRepair == "true")
+            {
+                data = data.Where(i => i.NeedsRepair);
+            }
+
+            var toReturn = data.Skip((page-1)*rows).Take(rows).ToArray();
+            var count = data.Count();
+
             // TODO: change the parameters, and use them to get and return the correct data
-            return RawData().Where(i => 1 == 2).ToArray();
+            return new JQGridWrapper<DataObject>()
+            {
+                records = toReturn.Length,
+                rows = toReturn,
+                page = page,
+                total = (int)Math.Ceiling((decimal)count / rows),
+            };
+        }
+
+        public class JQGridWrapper<T>
+        {
+            public int page { get; set; }
+            public int total { get; set; }
+            public T[] rows { get; set; }
+            public int records { get; set; }
         }
 
         public class DataObject
