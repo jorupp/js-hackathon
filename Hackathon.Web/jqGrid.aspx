@@ -12,6 +12,7 @@
 <asp:Content runat="server" ContentPlaceholderID="scripts">
     <script type="text/javascript" src="/Scripts/jquery-ui-1.10.4.min.js"></script>
     <script type="text/javascript" src="/Scripts/jquery.jqGrid.min.js"></script>
+    <script type="text/javascript" src="/Scripts/i18n/grid.locale-en.js"></script>
     <script type="text/javascript">
         $(function() {
             var data = [];
