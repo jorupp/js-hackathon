@@ -13,17 +13,17 @@
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Framework<b class="caret"></b></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownList">
-                <li><a href="/AngularJS.aspx">AngularJS</a></li>
-                <li><a href="/KnockoutJS.aspx">KnockoutJS</a></li>
+                <li><a href="/AngularJS.aspx"><b>AngularJS</b></a></li>
+                <li><a href="/KnockoutJS.aspx"><b>KnockoutJS</b></a></li>
             </ul>
         </li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grids<b class="caret"></b></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownList">
                 <li><a href="/SlickGridAngularJS.aspx">SlickGrid + AngularJS</a></li>
-                <li><a href="/SlickGridKnockoutJS.aspx">SlickGrid + KnockoutJS</a></li>
+                <li><a href="/SlickGridKnockoutJS.aspx"><b>SlickGrid + KnockoutJS</b></a></li>
                 <li><a href="/SlickGrid.aspx">SlickGrid</a></li>
-                <li><a href="/jqGridAngularJS.aspx">jqGrid + AngularJS</a></li>
+                <li><a href="/jqGridAngularJS.aspx"><b>jqGrid + AngularJS</b></a></li>
                 <li><a href="/jqGridKnockoutJS.aspx">jqGrid + KnockoutJS</a></li>
                 <li><a href="/jqGrid.aspx">jqGrid</a></li>
                 <li><a href="/jqxGridAngularJS.aspx">jqxGrid + AngularJS</a></li>
