@@ -20,10 +20,31 @@ namespace Hackathon.Web
 
         [OperationContract]
         [WebGet(BodyStyle = WebMessageBodyStyle.Bare, ResponseFormat = WebMessageFormat.Json)]
-        public DataObject[] GetDataForSlickGrid(string aRequestParameter)
+        public SlickGridWrapper<DataObject> GetDataForSlickGrid(string sidx, string sord, string aRequestParameter, int start, int limit, string Name, string NeedsRepair)
         {
-            // TODO: change the parameters, and use them to get and return the correct data
-            return RawData().Where(i => 1 == 2).ToArray();
+            var data = RawData().AsQueryable();
+
+            data = ApplySort(data, sidx, sord);
+
+            if (!string.IsNullOrEmpty(Name))
+            {
+                data = data.Where(i => i.Name.Contains(Name));
+            }
+            if (NeedsRepair == "true")
+            {
+                data = data.Where(i => i.NeedsRepair);
+            }
+            
+            var toReturn = data.Skip(start).Take(limit).ToArray();
+            var count = data.Count();
+
+            return new SlickGridWrapper<DataObject>()
+            {
+                start = start,
+                results = toReturn,
+                total = count,
+            };
+
         }
 
         [OperationContract]
@@ -32,6 +53,31 @@ namespace Hackathon.Web
         {
             var data = RawData().AsQueryable();
 
+            data = ApplySort(data, sidx, sord);
+
+            if (!string.IsNullOrEmpty(Name))
+            {
+                data = data.Where(i => i.Name.Contains(Name));
+            }
+            if (NeedsRepair == "true")
+            {
+                data = data.Where(i => i.NeedsRepair);
+            }
+
+            var toReturn = data.Skip((page-1)*rows).Take(rows).ToArray();
+            var count = data.Count();
+
+            return new JQGridWrapper<DataObject>()
+            {
+                records = toReturn.Length,
+                rows = toReturn,
+                page = page,
+                total = (int)Math.Ceiling((decimal)count / rows),
+            };
+        }
+
+        private IQueryable<DataObject> ApplySort(IQueryable<DataObject> data, string sidx, string sord)
+        {
             switch (sidx + " " + sord)
             {
                 case "Name asc":
@@ -59,27 +105,14 @@ namespace Hackathon.Web
                     data = data.OrderByDescending(i => i.NeedsRepair);
                     break;
             }
+            return data;
+        }
 
-            if (!string.IsNullOrEmpty(Name))
-            {
-                data = data.Where(i => i.Name.Contains(Name));
-            }
-            if (NeedsRepair == "true")
-            {
-                data = data.Where(i => i.NeedsRepair);
-            }
-
-            var toReturn = data.Skip((page-1)*rows).Take(rows).ToArray();
-            var count = data.Count();
-
-            // TODO: change the parameters, and use them to get and return the correct data
-            return new JQGridWrapper<DataObject>()
-            {
-                records = toReturn.Length,
-                rows = toReturn,
-                page = page,
-                total = (int)Math.Ceiling((decimal)count / rows),
-            };
+        public class SlickGridWrapper<T>
+        {
+            public int start { get; set; }
+            public T[] results { get; set; }
+            public int total { get; set; }
         }
 
         public class JQGridWrapper<T>
