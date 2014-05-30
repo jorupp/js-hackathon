@@ -122,8 +122,6 @@
                 jsonReader: { id: "Id", userdata: "rows", repeatitems: false },
                 afterInsertRow: function(id, data)
                 {
-                    // TODO: do CSS-style formatting here
-                    console.log(data.CurrentValue);
                     var row = grid.find('tr#' + id);
                     var cells = row.children("td");
                     if (data.NeedsRepair) {
