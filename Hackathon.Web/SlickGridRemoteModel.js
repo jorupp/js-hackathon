@@ -1,4 +1,4 @@
-﻿function RemoteModel(categoryFilter, needsRepairFilter) {
+﻿function RemoteModel(categoryFilter, descriptionFilter, needsRepairFilter) {
     // private
     var PAGESIZE = 50;
     var data = { length: 0 };
@@ -30,6 +30,8 @@
 
     function clear() {
         for (var key in data) {
+            if (key == 'getItemMetadata')
+                continue;
             delete data[key];
         }
         data.length = 0;
@@ -70,6 +72,9 @@
 
         if (categoryFilter()) {
             url += "&Name=" + categoryFilter();
+        }
+        if (descriptionFilter()) {
+            url += "&Description=" + descriptionFilter();
         }
         if (needsRepairFilter()) {
             url += "&NeedsRepair=" + needsRepairFilter();

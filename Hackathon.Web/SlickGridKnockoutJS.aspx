@@ -23,6 +23,15 @@
                         </div>
                     </div>
 
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="descriptionfilter">Description</label>
+                        <div class="col-md-5">
+                            <input id="descriptionfilter" name="descriptionfilter" type="text" placeholder="" class="form-control input-md" data-bind="value: descriptionFilter">
+
+                        </div>
+                    </div>
+
                     <!-- Multiple Checkboxes -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="attributefilter">Atrributes</label>
@@ -81,6 +90,25 @@
         .slick-header-column.ui-state-default {
             height: 22px;
         }
+
+        .column-repair-prob, .column-current-value {
+            text-align: right;
+        }
+        .needs-repair .column-name {
+            color: red;
+        }
+        .repair-red .column-repair-prob {
+            background-color: red;
+            color: white;
+        }
+        .repair-yellow .column-repair-prob {
+            background-color: yellow;
+            color: black;
+        }
+        .repair-green .column-repair-prob {
+            background-color: green;
+            color: black;
+        }
     </style>
 </asp:Content>
 
@@ -104,21 +132,22 @@
             selectedItem: ko.observable(null),
             categoryFilter: ko.observable(""),
             needsRepairFilter: ko.observable(false),
+            descriptionFilter: ko.observable("")
         };
 
         // this wires the model into the DOM    
         ko.applyBindings(model, $("#app")[0]);
 
-        var loader = new RemoteModel(model.categoryFilter, model.needsRepairFilter);
+        var loader = new RemoteModel(model.categoryFilter, model.descriptionFilter, model.needsRepairFilter);
 
         var grid;
         $(function() {
             var columns = [
                 //{id: "Id", name: "Id", field: "Id"},
-                {id: "Name", name: "Name", field: "Name", width: 200, sortable: true},
+                {id: "Name", name: "Name", field: "Name", width: 200, sortable: true, cssClass: "column-name"},
                 //{id: "Description", name: "Description", field: "Description"},
-                { id: "RepairProbabilityInNext90Days", name: "Repair Probability (next 90 days)", field: "RepairProbabilityInNext90Days", width: 100, sortable: true },
-                { id: "CurrentValue", name: "Current Value", field: "CurrentValue", formatter: function (r, c, v) { return "$" + parseFloat(v).toFixed(2); }, sortable: true },
+                { id: "RepairProbabilityInNext90Days", name: "Repair Probability (next 90 days)", field: "RepairProbabilityInNext90Days", width: 100, formatter: function (r, c, v) { return parseFloat(v).toFixed(0) + "%"; }, sortable: true, cssClass: "column-repair-prob" },
+                { id: "CurrentValue", name: "Current Value", field: "CurrentValue", formatter: function (r, c, v) { return "$" + parseFloat(v).toFixed(2); }, sortable: true, cssClass: "column-current-value" },
                 { id: "NeedsRepair", name: "Needs Repair", field: "NeedsRepair", sortable: true }
             ];
 
@@ -128,6 +157,29 @@
             };
 
             grid = new Slick.Grid("#myGrid", loader.data, columns, options);
+
+            loader.data.getItemMetadata = function(row) {
+                var data = loader.data[row];
+                if (!data)
+                    return {};
+                var classes = [];
+
+                if (data.NeedsRepair) {
+                    classes.push("needs-repair");
+                }
+                if (data.RepairProbabilityInNext90Days == 100) {
+                    classes.push("repair-red");
+                } else if (data.RepairProbabilityInNext90Days >= 80) {
+                    classes.push("repair-yellow");
+                } else {
+                    classes.push("repair-green");
+                }
+
+                return {
+                    cssClasses: classes.join(" ")
+                };
+            };
+
             grid.setSelectionModel(new Slick.RowSelectionModel());
             grid.onSelectedRowsChanged.subscribe(function () {
                 var m = grid.getData()[grid.getSelectedRows()[0]];
@@ -202,6 +254,7 @@
         }
 
         model.categoryFilter.subscribe(reFilter);
+        model.descriptionFilter.subscribe(reFilter);
         model.needsRepairFilter.subscribe(reFilter);
     })();
 </script>
