@@ -23,6 +23,15 @@
                         </div>
                     </div>
 
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="descriptionfilter">Description</label>
+                        <div class="col-md-5">
+                            <input id="descriptionfilter" name="descriptionfilter" type="text" placeholder="" class="form-control input-md" ng-model="descriptionFilter">
+
+                        </div>
+                    </div>
+
                     <!-- Multiple Checkboxes -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="attributefilter">Atrributes</label>
@@ -56,6 +65,23 @@
 <asp:Content runat="server" ContentPlaceholderID="head">
     <link rel="stylesheet" href="/Content/css/ui-lightness/jquery-ui-1.10.4.css" />
     <link rel="stylesheet" href="/Content/css/ui.jqgrid.css" />
+    <style type="text/css">
+        .name-needs-repair {
+            color: red;
+        }
+        .repair-red {
+            background-color: red;
+            color: white;
+        }
+        .repair-yellow {
+            background-color: yellow;
+            color: black;
+        }
+        .repair-green {
+            background-color: green;
+            color: black;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceholderID="scripts">
@@ -76,7 +102,9 @@
                     { name: 'Id', index: 'Id', hidden: true },
                     { name: 'Name', index: 'Name' },
                     { name: 'Description', index: 'Description', hidden: true },
-                    { name: 'RepairProbabilityInNext90Days', index: 'RepairProbabilityInNext90Days' },
+                    { name: 'RepairProbabilityInNext90Days', index: 'RepairProbabilityInNext90Days', align: 'right', formatter: function (v) {
+                        return parseFloat(v).toFixed(0) + "%";
+                    } },
                     { name: 'CurrentValue', index: 'CurrentValue', align: 'right', formatter: function(v) {
                         return "$" + parseFloat(v).toFixed(2);
                     } },
@@ -91,7 +119,24 @@
                 url: '/Services.svc/GetDataForJQGrid',
                 autowidth: true,
                 height: 'auto',
-                jsonReader: { id: "Id", userdata: "rows", repeatitems: false }
+                jsonReader: { id: "Id", userdata: "rows", repeatitems: false },
+                afterInsertRow: function(id, data)
+                {
+                    // TODO: do CSS-style formatting here
+                    console.log(data.CurrentValue);
+                    var row = grid.find('tr#' + id);
+                    var cells = row.children("td");
+                    if (data.NeedsRepair) {
+                        cells.eq(1).addClass("name-needs-repair");
+                    }
+                    if (data.RepairProbabilityInNext90Days == 100) {
+                        cells.eq(3).addClass("repair-red");
+                    } else if (data.RepairProbabilityInNext90Days >= 80) {
+                        cells.eq(3).addClass("repair-yellow");
+                    } else {
+                        cells.eq(3).addClass("repair-green");
+                    }
+                }
             });
             grid.on("jqGridSelectRow", function (evt, id, status, e) {
                 var data = grid.jqGrid("getRowData", id);
@@ -102,13 +147,19 @@
         
         $scope.selectedItem = null;
         $scope.categoryFilter = "";
+        $scope.descriptionFilter = "";
         $scope.needsRepairFilter = false;
 
         $scope.$watch("categoryFilter", function () {
             grid.jqGrid("setGridParam", { postData: { Name: $scope.categoryFilter } });
             grid.trigger("reloadGrid");
             $scope.selectedItem = null;
-            $scope.$apply();
+        });
+
+        $scope.$watch("descriptionFilter", function () {
+            grid.jqGrid("setGridParam", { postData: { Description: $scope.descriptionFilter } });
+            grid.trigger("reloadGrid");
+            $scope.selectedItem = null;
         });
 
         $scope.$watch("needsRepairFilter", function () {
@@ -116,7 +167,6 @@
             grid.jqGrid("setGridParam", { postData: { NeedsRepair: filter } });
             grid.trigger("reloadGrid");
             $scope.selectedItem = null;
-            $scope.$apply();
         });
     }
 </script>

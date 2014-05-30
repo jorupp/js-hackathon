@@ -20,7 +20,7 @@ namespace Hackathon.Web
 
         [OperationContract]
         [WebGet(BodyStyle = WebMessageBodyStyle.Bare, ResponseFormat = WebMessageFormat.Json)]
-        public SlickGridWrapper<DataObject> GetDataForSlickGrid(string sidx, string sord, string aRequestParameter, int start, int limit, string Name, string NeedsRepair)
+        public SlickGridWrapper<DataObject> GetDataForSlickGrid(string sidx, string sord, string aRequestParameter, int start, int limit, string Name, string Description, string NeedsRepair)
         {
             var data = RawData().AsQueryable();
 
@@ -29,6 +29,10 @@ namespace Hackathon.Web
             if (!string.IsNullOrEmpty(Name))
             {
                 data = data.Where(i => i.Name.Contains(Name));
+            }
+            if (!string.IsNullOrEmpty(Description))
+            {
+                data = data.Where(i => i.Description.Contains(Description));
             }
             if (NeedsRepair == "true")
             {
@@ -49,7 +53,7 @@ namespace Hackathon.Web
 
         [OperationContract]
         [WebGet(BodyStyle = WebMessageBodyStyle.Bare, ResponseFormat = WebMessageFormat.Json)]
-        public JQGridWrapper<DataObject> GetDataForJQGrid(string sidx, string sord, int rows, int page, string Name, string NeedsRepair)
+        public JQGridWrapper<DataObject> GetDataForJQGrid(string sidx, string sord, int rows, int page, string Description, string Name, string NeedsRepair)
         {
             var data = RawData().AsQueryable();
 
@@ -58,6 +62,10 @@ namespace Hackathon.Web
             if (!string.IsNullOrEmpty(Name))
             {
                 data = data.Where(i => i.Name.Contains(Name));
+            }
+            if (!string.IsNullOrEmpty(Description))
+            {
+                data = data.Where(i => i.Description.Contains(Description));
             }
             if (NeedsRepair == "true")
             {
